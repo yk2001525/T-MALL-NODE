@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const { SuccessModel, ErrorModel} = require('../model/resModel')
-const {SearchProduct,GetProduct} = require('../controller/product')
+const {SearchProduct,GetProduct,addShopCart} = require('../controller/product')
 
 router.post('/getproduct',function(req,res,next){
     const result = GetProduct()
@@ -21,6 +21,16 @@ router.post('/search',function(req,res,next){
         )
     })
 
+})
+
+router.post('/addshopcart',function(req,res,next){
+    const {user_id,product_id} = req.body
+    const result = addShopCart(user_id,product_id)
+    return result.then(list=>{
+        res.json(
+            new SuccessModel(list)
+        )
+    })
 })
 
 

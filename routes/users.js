@@ -12,7 +12,10 @@ var vertoken=require('../token/token')
 router.get('/', function(req, res, next) {
   // res.send('respond with a resource');
   if(req.data !== undefined){
-    res.send('当前已登录')
+    // res.send('当前已登录')
+    res.json(
+      req.data
+    )
   }else{
     res.send('未登录')
   }
