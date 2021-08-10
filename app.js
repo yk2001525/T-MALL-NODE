@@ -6,6 +6,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var productRouter = require('./routes/product')
 
 var vertoken = require('./token/token')
 var expressJwt = require('express-jwt')
@@ -60,6 +61,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/product',productRouter)
 
 //验证token是否过期并规定那些路由不需要验证
 app.use(expressJwt({
