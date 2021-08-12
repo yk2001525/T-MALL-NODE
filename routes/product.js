@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const { SuccessModel, ErrorModel} = require('../model/resModel')
-const {SearchProduct,GetProduct,addShopCart,checkShopCart,addShopNum,getMyShopCart,deleteShopCart,checkProduct,allCheck,allNoCheck} = require('../controller/product')
+const {SearchProduct,GetProduct,addShopCart,checkShopCart,addShopNum,cutShopNum,getMyShopCart,deleteShopCart,checkProduct,allCheck,allNoCheck} = require('../controller/product')
 
 router.post('/getproduct',function(req,res,next){
     const result = GetProduct()
@@ -45,13 +45,24 @@ router.post('/checkshopcart',function(req,res,next){
 
 router.post('/addshopcartnum',function(req,res,next){
     const {user_id,product_id}=req.body
-    const result = addShopNum(user_id,product_id)
-    return result.then((List)=>{
+    addShopNum(user_id,product_id)
+    const results = getMyShopCart(user_id)
+    return results.then((List)=>{
         res.json(
             new SuccessModel(List)
         )
     })
 
+})
+router.post('/cutshopcartnum',function(req,res,next){
+    const {user_id,product_id}=req.body
+    cutShopNum(user_id,product_id)
+    const results = getMyShopCart(user_id)
+    return results.then((List)=>{
+        res.json(
+            new SuccessModel(List)
+        )
+    })
 })
 router.post('/getshopcart',function(req,res,next){
     const{user_id}=req.body

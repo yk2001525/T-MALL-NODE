@@ -21,6 +21,10 @@ const addShopNum = (user_id,product_id)=>{
     let sql = `update shopcart set num = num+1 where user_id = '${user_id}' and product_id = '${product_id}'`
     return exec(sql)
 }
+const cutShopNum = (user_id,product_id)=>{
+    let sql = `update shopcart set num = num-1 where user_id = '${user_id}' and product_id = '${product_id}'`
+    return exec(sql)
+}
 const getMyShopCart=(user_id)=>{
     let sql = `select * from product,shopcart WHERE product.product_id = shopcart.product_id and shopcart.user_id = '${user_id}'`
     return exec(sql)
@@ -48,6 +52,7 @@ module.exports={
     addShopCart,
     checkShopCart,
     addShopNum,
+    cutShopNum,
     getMyShopCart,
     deleteShopCart,
     checkProduct,
