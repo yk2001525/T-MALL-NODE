@@ -5,6 +5,6 @@ yarn
 ```
 
 ```
-nodemon
+yarn start
 ```
 
