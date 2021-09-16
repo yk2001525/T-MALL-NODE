@@ -10,6 +10,7 @@ var vertoken=require('../token/token')
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
+  console.log(req.data)
   // res.send('respond with a resource');
   if(req.data !== undefined){
     // res.send('当前已登录')
@@ -33,7 +34,6 @@ router.post('/newuser',function(req,res,next){
   const {userId,userPassword} = req.body
   const result = SearchUser(userId)
   return result.then(result1=>{
-    console.log(result1)
     if(result1.length !== 0){
       res.json(
         new ErrorModel(result1)
@@ -58,6 +58,7 @@ router.post('/loginin',function(req,res,next){
   const result = UserLoginIn(userId,userPassword)
   return result.then(results=>{
     // console.log(results.length)
+    console.log(results)
     if(results.length === 0)
       res.json(
         new ErrorModel(results)

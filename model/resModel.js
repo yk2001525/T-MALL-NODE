@@ -1,10 +1,5 @@
 class BaseModel {
     constructor(data, message) {
-        if (typeof data === 'string'){
-            this.message = data
-            data = null
-            message = null
-        }
         if(data){
             this.data = data
         }
@@ -16,7 +11,7 @@ class BaseModel {
 
 class SuccessModel extends BaseModel {
     constructor(data, message){
-        super(data, message)
+        super(data, message)   //调用父类构造函数,只能出现在子类的构造函数。
         this.errno = 0
     }
 }

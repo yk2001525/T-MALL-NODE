@@ -30,8 +30,6 @@ app.use((req, res, next) => {
       'Access-Control-Allow-Methods': 'PUT,POST,GET,DELETE,OPTIONS',
       'Content-Type': 'application/json; charset=utf-8',
       'Access-Control-Allow-Headers':'x-requested-with,content-type,Authorization'
-      
-
   })
   
   req.method === 'OPTIONS' ? res.status(204).end() : next()
